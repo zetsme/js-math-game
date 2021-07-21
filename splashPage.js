@@ -1,12 +1,9 @@
-import { createElement } from './utils.js';
+import { createElement, appendToDOM } from './utils.js';
 
 export const createSplashPage = (valuesArr) => {
   document.querySelector('.page')?.remove();
-
   const page = createElement('div', 'page');
-
   const form = createElement('form');
-
   const radioButtonsContainer = createElement('div', 'radioButtons-container');
 
   valuesArr.forEach(({ questions, bestScore }) => {
@@ -31,16 +28,25 @@ export const createSplashPage = (valuesArr) => {
       {},
       `${Number(bestScore).toFixed(1)}s`
     );
-    spanContainer.append(spanTitle, spanScore);
-    radioContainer.append(label, input, spanContainer);
-    radioButtonsContainer.appendChild(radioContainer);
+
+    appendToDOM(
+      new Map([
+        [spanContainer, [spanTitle, spanScore]],
+        [radioContainer, [label, input, spanContainer]],
+        [radioButtonsContainer, [radioContainer]],
+      ])
+    );
   });
 
   const startBtn = createElement('button', 'startBtn', { type: 'submit' }, 'Start');
 
-  form.append(radioButtonsContainer, startBtn);
-  page.appendChild(form);
-  document.querySelector('.container').appendChild(page);
+  appendToDOM(
+    new Map([
+      [form, [radioButtonsContainer, startBtn]],
+      [page, [form]],
+      [document.querySelector('.container'), [page]],
+    ])
+  );
 
   document.querySelector('.radioButtons-container').addEventListener('click', () => {
     document.querySelectorAll('.radio-container').forEach((el) => {

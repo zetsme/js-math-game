@@ -1,4 +1,4 @@
-import { createElement } from './utils.js';
+import { createElement, appendToDOM } from './utils.js';
 
 export const createGamePage = () => {
   document.querySelector('.page').remove();
@@ -10,8 +10,13 @@ export const createGamePage = () => {
   const wrongBtn = createElement('button', 'wrong', {}, 'Wrong');
   const rightBtn = createElement('button', 'right', {}, 'Right');
   const gameTimerEl = createElement('span', 'equations-timer', {}, `0.0s`);
-  itemFooter.append(wrongBtn, rightBtn);
-  itemContainer.appendChild(item);
-  page.append(questionNumber, itemContainer, itemFooter, gameTimerEl);
-  document.querySelector('.container').appendChild(page);
+
+  appendToDOM(
+    new Map([
+      [itemFooter, [wrongBtn, rightBtn]],
+      [itemContainer, [item]],
+      [page, [questionNumber, itemContainer, itemFooter, gameTimerEl]],
+      [document.querySelector('.container'), [page]],
+    ])
+  );
 };

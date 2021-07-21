@@ -10,6 +10,8 @@ const createElement = (tag, classes = '', attributes = {}, textCotent = '') => {
   return $;
 };
 
+const appendToDOM = (myMap) => myMap.forEach((value, key) => key.append(...value));
+
 const findCoincidencesInArrays = (arr1, arr2) => {
   const tempArr = arr1.filter((item, index) => item === arr2[index]);
   const rightValues = tempArr.length;
@@ -17,4 +19,4 @@ const findCoincidencesInArrays = (arr1, arr2) => {
   return [rightValues, wrongValues];
 };
 
-export { createElement, findCoincidencesInArrays };
+export { createElement, findCoincidencesInArrays, appendToDOM };

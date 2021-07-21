@@ -1,4 +1,4 @@
-import { createElement } from './utils.js';
+import { createElement, appendToDOM } from './utils.js';
 
 export const createResultPage = ([rightGuess, wrongGuess], gameTime) => {
   const penaltyForWrongGuess = 3;
@@ -27,11 +27,15 @@ export const createResultPage = ([rightGuess, wrongGuess], gameTime) => {
   const scoreFooter = createElement('footer', 'score-footer');
   const playAgainBtn = createElement('button', 'playAgainBtn', {}, 'Play Again');
 
-  scoreFooter.appendChild(playAgainBtn);
-  timeContainerEl.append(baseTime, penalyTime);
-  scoreContainer.append(rightGuessEl, finalTime, timeContainerEl);
-  page.append(scoreContainer, scoreFooter);
-  document.querySelector('.container').appendChild(page);
+  appendToDOM(
+    new Map([
+      [scoreFooter, [playAgainBtn]],
+      [timeContainerEl, [baseTime, penalyTime]],
+      [scoreContainer, [rightGuessEl, finalTime, timeContainerEl]],
+      [page, [scoreContainer, scoreFooter]],
+      [document.querySelector('.container'), [page]],
+    ])
+  );
 
   return final;
 };
