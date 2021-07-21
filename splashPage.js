@@ -41,4 +41,28 @@ export const createSplashPage = (valuesArr) => {
   form.append(radioButtonsContainer, startBtn);
   page.appendChild(form);
   document.querySelector('.container').appendChild(page);
+
+  document.querySelector('.radioButtons-container').addEventListener('click', () => {
+    document.querySelectorAll('.radio-container').forEach((el) => {
+      el.classList.remove('selected-radio-container');
+      if (el.children[1].checked) {
+        el.classList.add('selected-radio-container');
+      }
+    });
+  });
+
+  const getRadioValue = () => {
+    let questionAmount;
+    document
+      .querySelector('.radioButtons-container')
+      .querySelectorAll('input')
+      .forEach((input) => {
+        if (input.checked) {
+          questionAmount = input.value;
+        }
+      });
+    return questionAmount;
+  };
+
+  return getRadioValue;
 };

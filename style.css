@@ -21,10 +21,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23000000' fill-opacity='0.06' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   font-family: 'Montserrat', sans-serif;
 }
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+
 .container {
   border: 1px solid var(--main-color);
   width: 600px;
@@ -44,30 +41,20 @@ button {
 }
 .page {
   height: 700px;
-  max-height: 90%;
-  margin: auto 10px;
-  border: 1px solid black;
-  padding: 10px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  /*  */
   position: relative;
   flex-direction: column;
+  width: 90%;
+  max-width: 500px;
 }
 form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 }
-.radioButtons-container {
-  width: 100%;
-}
+
 .radio-container {
-  width: 100%;
   border: 1px solid var(--main-color);
   padding: 0 10px;
   margin: 20px 0;
@@ -80,7 +67,6 @@ form {
 }
 label {
   font-size: min(30px, 6vw);
-  z-index: 10;
   width: 100%;
   height: 100%;
   line-height: 70px;
@@ -88,6 +74,8 @@ label {
 }
 input[type='radio'] {
   opacity: 0;
+  width: 0;
+  height: 0;
 }
 .best-score {
   display: flex;
@@ -101,66 +89,58 @@ input[type='radio'] {
 .best-score-value {
   font-size: 24px;
 }
-.startBtn {
-  width: 100%;
-  padding: 20px;
-  font-size: min(30px, 6vw);
-  border: none;
-  border-radius: 10px;
-  background-color: var(--main-color);
-  color: #fff;
-}
+
 .selected-radio-container {
   background-color: var(--main-color);
   color: #fff;
 }
 .countdown {
-  font-size: 50px;
+  font-size: min(20vw, 100px);
+  background-color: var(--main-color);
+  border-radius: 10px;
+  color: #fff;
+  min-height: 200px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .question-number {
   font-size: 30px;
   margin-bottom: 20px;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+.item-container,
+.item-footer {
+  width: 90%;
 }
 .item-container {
   min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
-  width: 50%;
+  border-radius: 10px;
   margin-bottom: 50px;
+  background-color: var(--main-color);
 }
 .item {
-  font-size: 40px;
+  font-size: min(10vw, 40px);
 }
 .item-footer {
-  width: 80%;
   display: flex;
   gap: 20px;
 }
-.item-footer button {
-  flex: 1;
-  height: 80px;
-  border: none;
-  color: #fff;
-  font-size: 30px;
-  text-transform: uppercase;
-  border: 5px solid black;
-}
-.wrong {
-  background-color: red;
-}
-.right {
-  background-color: green;
-}
+
 .equations-timer {
   position: absolute;
   bottom: 50px;
   right: 50px;
-  font-size: 20px;
+  font-size: min(6vw, 30px);
 }
 .score-container {
-  width: 90%;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -168,18 +148,19 @@ input[type='radio'] {
   margin-bottom: 50px;
 }
 .right-guess {
-  font-size: 40px;
+  font-size: min(10vw, 40px);
 }
 .final-time {
-  font-size: 30px;
+  font-size: min(8vw, 30px);
 }
 .time-container {
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
 }
 .time-container h4 {
-  font-size: 25px;
+  font-size: min(6vw, 25px);
 }
 .base-time {
   color: green;
@@ -188,15 +169,41 @@ input[type='radio'] {
   color: red;
 }
 .score-footer {
-  width: 50%;
+  width: 100%;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  height: 80px;
+  text-transform: uppercase;
+  font-size: min(6vw, 30px);
+  color: #fff;
+}
+.startBtn {
+  width: 100%;
+  background-color: var(--main-color);
 }
 .playAgainBtn {
   width: 100%;
-  height: 80px;
-  border: none;
-  color: #fff;
-  font-size: 30px;
-  text-transform: uppercase;
-  border: 5px solid black;
   background-color: var(--main-color);
+}
+.item-footer button {
+  flex: 1;
+  transition: 0.3s;
+  box-shadow: 0 9px #999;
+}
+.item-footer button:hover {
+  filter: brightness(1.2);
+}
+.item-footer button:active {
+  transform: translateY(4px);
+  box-shadow: 0 5px #666;
+}
+.wrong {
+  background-color: #790202;
+}
+.right {
+  background-color: green;
 }

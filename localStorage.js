@@ -5,7 +5,7 @@ export const compareAndSaveToLocalStorage = (questionAmount, result) => {
     if (Number(questionAmount) === i.questions) {
       const savedBestScore = Number(i.bestScore);
       if (savedBestScore === 0 || result < savedBestScore) {
-        i.bestScore = result;
+        i.bestScore = result.toFixed(1);
       }
     }
   });

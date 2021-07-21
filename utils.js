@@ -10,11 +10,11 @@ const createElement = (tag, classes = '', attributes = {}, textCotent = '') => {
   return $;
 };
 
-const findCoincidencesinArrays = (arr1, arr2) => {
+const findCoincidencesInArrays = (arr1, arr2) => {
   const tempArr = arr1.filter((item, index) => item === arr2[index]);
   const rightValues = tempArr.length;
   const wrongValues = arr1.length - tempArr.length;
   return [rightValues, wrongValues];
 };
 
-export { createElement, findCoincidencesinArrays };
+export { createElement, findCoincidencesInArrays };
